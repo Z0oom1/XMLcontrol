@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>M&M CORE | Professional Enterprise</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body oncontextmenu="return false;">
+    <div class="os-shell">
+        <aside class="sidebar">
+            <div class="brand-section">
+                <div class="logo-orb"></div>
+                <div class="logo-info">
+                    <span class="logo-text">M&M CORE</span>
+                    <span class="version-tag">Professional Edition v2.6.5</span>
+                </div>
+            </div>
+            <nav class="nav-container">
+                <p class="section-title">SISTEMA</p>
+                <button class="menu-item active" onclick="connectStorage()">
+                    <span class="ico">💾</span> Unidade N:
+                </button>
+                <button class="menu-item" onclick="bulkInstall()">
+                    <span class="ico">📦</span> Batch Install
+                </button>
+                <p class="section-title">ORGANIZAR</p>
+                <button class="menu-item" onclick="setSort('name')">🔡 Alfabético</button>
+            </nav>
+            <div class="disk-card">
+                <div class="disk-meta"><span>Drive N:</span> <span>92%</span></div>
+                <div class="progress-bar"><div class="fill" style="width: 92%"></div></div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-toolbar">
+                <div class="nav-tools">
+                    <div class="history-btns">
+                        <button class="circle-btn" onclick="historyBack()">❮</button>
+                        <button class="circle-btn" onclick="historyForward()">❯</button>
+                    </div>
+                    <div id="breadcrumbPath" class="path-bar">Raiz</div>
+                </div>
+                <div class="action-tools">
+                    <div class="search-field">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="smartSearch" placeholder="Pesquisar..." oninput="renderUI()">
+                    </div>
+                    <button class="plus-btn" onclick="openFolderModal(null)">＋ Nova Pasta</button>
+                </div>
+            </header>
+
+            <div id="fileCanvas" class="file-grid" onmousedown="startMarquee(event)"></div>
+
+            <footer class="bottom-status">
+                <div class="stat"><span id="selectionCount">0</span> itens selecionados</div>
+                <div class="stat">Ctrl+A para selecionar tudo</div>
+            </footer>
+        </main>
+
+        <aside class="inspector-panel" id="inspector">
+            <div class="ins-header">Detalhes do Item</div>
+            <div id="inspectorContent" class="ins-body">
+                <div class="preview-box" id="insPreview">􀈕</div>
+                <div class="ins-info">
+                    <h3 id="insName">Nenhum item</h3>
+                    <p id="insMeta">Selecione para ver propriedades</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <div id="folderModal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 id="modalTitle">Configurar Pasta</h3>
+            <div class="input-group"><label>Nome</label><input type="text" id="folderName"></div>
+            <div class="input-group"><label>Cor</label><input type="color" id="folderColor" value="#007aff"></div>
+            <div class="input-group"><label>URL da Imagem</label><input type="text" id="folderImg"></div>
+            <div class="modal-actions">
+                <button class="btn-secondary" onclick="closeModal()">Cancelar</button>
+                <button class="btn-primary" id="saveFolderBtn">Aplicar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="contextMenu" class="context-menu">
+        <div class="menu-item" onclick="openFolderModal(null)">＋ Nova Pasta</div>
+        <div class="menu-item" onclick="renderUI()">🔄 Atualizar Unidade</div>
+    </div>
+
+    <div id="marquee"></div>
+    <script src="script.js"></script>
+</body>
+</html>

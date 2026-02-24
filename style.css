@@ -1,0 +1,71 @@
+:root {
+    --bg-dark: #000000;
+    --panel-bg: rgba(13, 13, 15, 0.85);
+    --accent: #007aff;
+    --border: rgba(255, 255, 255, 0.08);
+    --text-dim: #8e8e93;
+    --radius: 14px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+body { background: var(--bg-dark); color: #fff; height: 100vh; overflow: hidden; }
+
+.os-shell { display: grid; grid-template-columns: 260px 1fr 280px; height: 100vh; padding: 10px; gap: 10px; }
+
+/* Sidebar & Inspector */
+.sidebar, .inspector-panel { 
+    background: var(--panel-bg); border-radius: var(--radius); border: 1px solid var(--border);
+    backdrop-filter: blur(20px); display: flex; flex-direction: column; padding: 20px;
+}
+
+.brand-section { display: flex; align-items: center; gap: 12px; margin-bottom: 25px; }
+.logo-orb { width: 14px; height: 14px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 15px var(--accent); }
+.logo-text { font-weight: 700; font-size: 15px; }
+.version-tag { font-size: 9px; color: var(--text-dim); display: block; margin-top: 2px; }
+
+/* Menu Items & Disk Card */
+.section-title { font-size: 10px; color: var(--text-dim); font-weight: 800; margin: 25px 0 10px; letter-spacing: 1px; }
+.menu-item {
+    background: none; border: none; color: var(--text-dim); width: 100%; text-align: left;
+    padding: 10px 14px; border-radius: 10px; cursor: pointer; transition: 0.2s; font-size: 13px;
+    display: flex; align-items: center; gap: 10px;
+}
+.menu-item.active { background: rgba(255,255,255,0.06); color: #fff; border-left: 3px solid var(--accent); }
+
+.disk-card { margin-top: auto; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; }
+.disk-meta { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 8px; color: var(--text-dim); }
+.progress-bar { height: 5px; background: rgba(255,255,255,0.1); border-radius: 10px; }
+.progress-bar .fill { height: 100%; background: var(--accent); border-radius: 10px; }
+
+/* Grid e Itens */
+.main-content { display: flex; flex-direction: column; background: var(--panel-bg); border-radius: var(--radius); border: 1px solid var(--border); }
+.file-grid { flex: 1; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; padding: 20px; align-content: start; }
+
+.item-card {
+    display: flex; flex-direction: column; align-items: center; padding: 15px 5px; border-radius: 12px; 
+    transition: 0.15s; cursor: pointer; border: 1px solid transparent;
+}
+.item-card:hover { background: rgba(255,255,255,0.04); }
+.item-card.selected { background: rgba(0, 122, 255, 0.15); border-color: rgba(0, 122, 255, 0.3); }
+
+/* Ícone de Pasta Apple Estilizado */
+.folder-icon { 
+    width: 58px; height: 45px; border-radius: 5px; position: relative; margin-bottom: 10px;
+    background: linear-gradient(180deg, #6ec1fb 0%, #007aff 100%);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+.folder-icon::after {
+    content: ''; position: absolute; top: -4px; left: 0; width: 24px; height: 9px;
+    background: inherit; border-radius: 3px; filter: brightness(1.1);
+}
+.folder-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 5px; }
+
+/* Modais e UI Tools */
+.top-toolbar { padding: 15px 20px; display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); }
+.circle-btn { width: 30px; height: 30px; border-radius: 50%; background: #1c1c1e; border: 1px solid var(--border); color: #fff; cursor: pointer; }
+.plus-btn { background: var(--accent); border: none; color: #fff; padding: 8px 18px; border-radius: 10px; font-weight: 600; cursor: pointer; }
+
+#marquee { position: fixed; border: 1px solid var(--accent); background: rgba(0, 122, 255, 0.1); display: none; z-index: 1000; pointer-events: none; }
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; z-index: 2000; backdrop-filter: blur(5px); }
+.modal-content { background: #1c1c1e; padding: 25px; border-radius: 20px; width: 340px; border: 1px solid var(--border); }
+.context-menu { position: fixed; background: #1c1c1e; border: 1px solid var(--border); width: 180px; display: none; z-index: 3000; border-radius: 10px; padding: 5px; }
